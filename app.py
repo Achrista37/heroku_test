@@ -9,7 +9,7 @@ import json
 from flask import Flask, jsonify,render_template
 
  # Create engine using the database file
-engine = create_engine("postgres://ogbxrcxjrgzqrq:b25ce739808e8d95ea3c8a196fb367e6c91f0e53272303bfdc0e58b9a501d254@ec2-3-223-213-207.compute-1.amazonaws.com:5432/ddmpo72ifhij51")
+engine = create_engine("sqlite:///Resources/internet.sqlite")
 
 #Reflect Database
 Base = automap_base()
