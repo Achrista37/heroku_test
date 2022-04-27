@@ -41,18 +41,11 @@ def welcome():
 @app.route("/api/dashboard")
 def api_overview():
    dbConnect = engine.connect()
-   df = pd.read_sql('select * from internet_with_countrycodes', dbConnect)
+   df = pd.read_sql('select * from Internet_data_hpfl', dbConnect)
    json_overview = json.loads(df.to_json(orient='records'))
    dbConnect.close()
    return jsonify(json_overview)
 
-#################################################
-# HTML Routes
-#################################################
-
-# @app.route('/html')
-# def index():
-#     return render_template('index.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
