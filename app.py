@@ -7,6 +7,7 @@ from sqlalchemy import create_engine, func
 import pandas as pd
 import json
 from flask import Flask, jsonify,render_template
+from flask_cors import CORS
 
  # Create engine using the database file
 engine = create_engine("sqlite:///Resources/internet.sqlite")
@@ -23,11 +24,12 @@ session = Session(engine)
 #################################################
 #app.config["CACHE_TYPE"] = "null"
 app = Flask(__name__)
-
+CORS(app)
 
 #################################################
 # Flask Routes
 #################################################
+
 @app.route("/")
 def welcome():
     """List all available api routes."""
@@ -45,6 +47,17 @@ def api_overview():
    json_overview = json.loads(df.to_json(orient='records'))
    dbConnect.close()
    return jsonify(json_overview)
+
+# #
+# @app.route("/")
+# def home():
+
+#     # Return template and data
+#     return render_template("index.html")
+# #
+
+
+
 
 
 if __name__ == "__main__":
